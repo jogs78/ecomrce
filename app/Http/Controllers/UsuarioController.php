@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use App\Models\Usuario;
@@ -11,17 +12,19 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request) //listar
     {
+        $usuarios = Usuario::all();
+        return view('listado',compact('usuarios'));
         //
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request) //crear 1
     {
-        //
+        return view('crear');
     }
 
     /**
@@ -29,6 +32,17 @@ class UsuarioController extends Controller
      */
     public function store(StoreUsuarioRequest $request)
     {
+
+        $valores = $request->all();
+        $c = ['primero'=>'hugo','segundo'=>'paco','tercero'=>'luis'];
+        dump($valores);
+        $nuevo = new Usuario();
+        $nuevo->nombre = $valores['nombre'];
+        $nuevo->apellido_paterno = $valores['apellido_paterno'];
+        $nuevo->apellido_materno = $valores['apellido_materno'];
+        $nuevo->genero = $valores['genero'];
+        $nuevo->save();
+        return redirect(route('lista'));
         //
     }
 
@@ -37,7 +51,10 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        //
+        echo "nombre:" . $usuario->nombre . "<br>";
+        echo "apellido_paterno:" . $usuario->apellido_paterno . "<br>";
+        echo "apellido_materno:" . $usuario->apellido_materno . "<br>";
+        echo "genero:" . $usuario->genero . "<br>";
     }
 
     /**
@@ -45,7 +62,7 @@ class UsuarioController extends Controller
      */
     public function edit(Usuario $usuario)
     {
-        //
+        return view('editar',compact('usuario'));
     }
 
     /**
@@ -53,7 +70,11 @@ class UsuarioController extends Controller
      */
     public function update(UpdateUsuarioRequest $request, Usuario $usuario)
     {
-        //
+        $valores = $request->all();
+        dump($valores);
+        $usuario->fill($valores);
+        $usuario->save();
+        return redirect(route('lista'));
     }
 
     /**
@@ -61,6 +82,8 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        //
+        echo "borrar a $usuario->nombre";
+        $usuario->delete();
+        return redirect(route('lista'));
     }
 }
