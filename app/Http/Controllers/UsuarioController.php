@@ -15,7 +15,11 @@ class UsuarioController extends Controller
     public function index(Request $request) //listar
     {
         $usuarios = Usuario::all();
-        return view('listado',compact('usuarios'));
+     
+        if($request->expectsJson())
+            return $usuarios->toJson();
+        else
+            return view('listado',compact('usuarios'));
         //
     }
 

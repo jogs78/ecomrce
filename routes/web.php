@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PuertaController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +36,5 @@ Route::get('mostrar-usuarios/{usuario}',[UsuarioController::class,'show'])->name
 Route::get('editar-usuarios/{usuario}',[UsuarioController::class,'edit'])->name('editar');
 Route::put('actualiza-usuarios/{usuario}',[UsuarioController::class,'update'])->name('actualiza');
 Route::delete('destruir-usuarios/{usuario}',[UsuarioController::class,'destroy'])->name('destruir');
+
+Route::resource('categorias', CategoriaController::class);
