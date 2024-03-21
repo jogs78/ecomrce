@@ -38,15 +38,31 @@ class CategoriaController extends Controller
         $nueva = new Categoria;
         $nueva->fill($request->all());
         $nueva->save();
-        return redirect(route('categorias.index'));
+
+        if( $request->expectsJson() ){
+            return response()->json($nueva->toArray(), 201, ["Cache-Control"=>"no-cache"]);
+        }else{
+            return redirect(route('categorias.index'));
+        }
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show(Categoria $categoria, Request $request)
     {
-        echo "Mostrando $categoria->nombre";
+
+        if( $request->expectsJson() ){
+            $datos = [
+                'nombre' => $categoria->nombre,
+                'cuantos' => 5,
+            ];
+            return response()->json($datos);
+        }else{
+            echo "Mostrando $categoria->nombre";
+        }
+
     }
 
     /**
@@ -64,15 +80,28 @@ class CategoriaController extends Controller
     {
         $categoria->fill($request->all());
         $categoria->save();
+        if ($request->expectsJson())
+            return response()->json($categoria->toArray());
+        else
+
         return redirect(route('categorias.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Categoria $categoria, Request $request)
     {
+
         $categoria->delete();
+        if ($request->expectsJson()){
+            $respuesta=
+            [
+                "realizado" => "si"
+            ];
+            return response()->json($respuesta);
+        }
+        else
         return redirect(route('categorias.index'));
     }
 }
