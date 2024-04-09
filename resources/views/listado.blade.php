@@ -1,3 +1,6 @@
+@if ( is_null(Auth::user()) )
+  primero debes iniciar    
+@else
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,4 +66,6 @@
 
 
 </body>
-</html>
+</html>    
+@endif
+

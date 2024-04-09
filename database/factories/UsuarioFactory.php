@@ -24,6 +24,7 @@ class UsuarioFactory extends Factory
         $nombre = ($genero == 'MASCULINO') ? $faker->nombreMasculino() : $faker->nombreFemenino();
 
         return [
+            'correo' => fake()->unique()->safeEmail(),
             'apellido_paterno' => $faker->apellido(),
             'apellido_materno' => $faker->apellido(),
             'nombre' => $nombre,

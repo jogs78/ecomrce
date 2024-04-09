@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->string('correo')->unique();
             $table->string('apellido_paterno')->nullable()->default(null);
             $table->string('apellido_materno')->nullable()->default(null);
             $table->string('nombre')->nullable()->default(null);
             $table->enum('genero',['Masculino' , 'Femenino']);
+            $table->string('clave')->nullable()->default('123');
             $table->timestamps();
         });
     }

@@ -25,6 +25,7 @@ Route::get('saludar', function (){
     return "HOLA";
 });
 
+
 Route::get('entrar',[PuertaController::class, 'entrada']);
 Route::get('salir',[PuertaController::class, 'salida']);
 Route::post('validar',[PuertaController::class, 'valida']);

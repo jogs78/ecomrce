@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -55,10 +56,16 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        echo "nombre:" . $usuario->nombre . "<br>";
-        echo "apellido_paterno:" . $usuario->apellido_paterno . "<br>";
-        echo "apellido_materno:" . $usuario->apellido_materno . "<br>";
-        echo "genero:" . $usuario->genero . "<br>";
+        if( is_null(Auth::user()) ){
+            echo "primero debes iniciar";
+        }else{
+            echo "nombre:" . $usuario->nombre . "<br>";
+            echo "apellido_paterno:" . $usuario->apellido_paterno . "<br>";
+            echo "apellido_materno:" . $usuario->apellido_materno . "<br>";
+            echo "genero:" . $usuario->genero . "<br>";    
+
+        }
+
     }
 
     /**
