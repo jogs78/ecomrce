@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PuertaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('listar-usuarios',[UsuarioController::class,'index'])->name('lista2');
 Route::apiResource('categorias', CategoriaController::class);
+
+Route::post('validar',[PuertaController::class, 'valida']);
+

@@ -10,5 +10,5 @@ class Usuario  extends Authenticatable
 {
     use HasFactory;
 
-    protected $fillable= [ 'apellido_paterno', 'apellido_materno', 'nombre', 'genero'];
+    protected $fillable= [ 'apellido_paterno', 'apellido_materno', 'nombre', 'genero', 'correo', 'clave', 'token'];
 }

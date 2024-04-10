@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 
 class PuertaController extends Controller
@@ -35,13 +36,38 @@ PAGINA;
       $clave_escrita  = $request->input('clave');
       //echo "revisaremos los datos si el usuario $nombre_usuario tiene $clave_escrita por clave";
       $encontrado = Usuario::where('correo', $nombre_usuario)->first();
-      if( is_null($encontrado) ) echo " USUARIO no existe. ";
+      if( is_null($encontrado) ){
+        if ($request->expectsJson()){
+          return response()->json(['error'=>'Usuario no existe'] );
+         }else{
+          echo " USUARIO no existe. ";
+         }
+
+      } 
       else{
         if(Hash::check($clave_escrita,$encontrado->clave)){
+
+        $token = Str::random();
+        $encontrado->token = $token ;
+        $encontrado->save();
+
+
+         if ($request->expectsJson()){
+          return response()->json($encontrado );
+         }else{
           Auth::login($encontrado);
-         echo "Bienvenido";
-        }else
-         echo "Credenciales incorrectas";
-      }
+          return redirect('/');
+         }
+
+        }else{
+          if ($request->expectsJson()){
+            return response()->json(['error'=>'Credenciales incorrectas'] );
+           }else{
+            echo "Credenciales incorrectas";
+          }
+  
+        }
+
+        }
     }
 }
