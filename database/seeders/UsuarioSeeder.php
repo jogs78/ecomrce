@@ -23,5 +23,14 @@ class UsuarioSeeder extends Seeder
         $nuevo->clave = Hash::make('123');
         $nuevo->save();
         //
+        $nuevo = new Usuario();
+        $nuevo->correo = 'luis@gmail.com';
+        $nuevo->apellido_paterno = "PEREZ";
+        $nuevo->apellido_materno = "LOPEZ";
+        $nuevo->nombre = "LUIS";
+        $nuevo->genero = 'Masculino';
+        $nuevo->clave = Hash::make('123');
+        $nuevo->rol = 'Encargado';
+        $nuevo->save();
     }
 }

@@ -56,6 +56,23 @@ PAGINA;
           return response()->json($encontrado );
          }else{
           Auth::login($encontrado);
+
+          switch ($encontrado->rol) {
+            case 'Cliente':
+              return view('layouts.principalcliente');
+              # code...
+              break;
+            case 'Encargado':
+              return view('layouts.principalencargado');
+              # code...
+              break;
+            
+            default:
+              # code...
+              break;
+          }
+
+
           return redirect('/');
          }
 
