@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PuertaController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\Categoria;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('bienvenido');
 });
 
 Route::get('saludar', function (){
@@ -26,8 +27,8 @@ Route::get('saludar', function (){
 });
 
 
-Route::get('entrar',[PuertaController::class, 'entrada']);
-Route::get('salir',[PuertaController::class, 'salida']);
+Route::get('entrar',[PuertaController::class, 'entrada'])->name('entrar');
+Route::get('salir',[PuertaController::class, 'salida'])->name('salida');
 Route::post('validar',[PuertaController::class, 'valida']);
 
 Route::get('listar-usuarios',[UsuarioController::class,'index'])->name('lista');
@@ -39,3 +40,5 @@ Route::put('actualiza-usuarios/{usuario}',[UsuarioController::class,'update'])->
 Route::delete('destruir-usuarios/{usuario}',[UsuarioController::class,'destroy'])->name('destruir');
 
 Route::resource('categorias', CategoriaController::class);
+Route::resource('productos', ProductoController::class);
+

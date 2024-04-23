@@ -15,21 +15,21 @@ class UsuarioSeeder extends Seeder
     public function run(): void
     {
         $nuevo = new Usuario();
-        $nuevo->correo = 'pedro@gmail.com';
+        $nuevo->correo = 'cliente@gmail.com';
         $nuevo->apellido_paterno = "GOMEZ";
         $nuevo->apellido_materno = "CRUZ";
         $nuevo->nombre = "PEDRO";
         $nuevo->genero = 'Masculino';
-        $nuevo->clave = Hash::make('123');
+        $nuevo->clave = Hash::make('cliente@gmail.com');
         $nuevo->save();
         //
         $nuevo = new Usuario();
-        $nuevo->correo = 'luis@gmail.com';
+        $nuevo->correo = 'encargado@gmail.com';
         $nuevo->apellido_paterno = "PEREZ";
         $nuevo->apellido_materno = "LOPEZ";
         $nuevo->nombre = "LUIS";
         $nuevo->genero = 'Masculino';
-        $nuevo->clave = Hash::make('123');
+        $nuevo->clave = Hash::make('encargado@gmail.com');
         $nuevo->rol = 'Encargado';
         $nuevo->save();
     }

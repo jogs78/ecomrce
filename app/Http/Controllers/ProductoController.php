@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Producto;
+use App\Models\Categoria;
 
 class ProductoController extends Controller
 {
@@ -13,7 +14,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $encontrados = Producto::all();
+        return view('producto.index', compact('encontrados'));
     }
 
     /**
@@ -21,7 +23,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view('producto.create',compact('categorias'));
     }
 
     /**
@@ -29,7 +32,10 @@ class ProductoController extends Controller
      */
     public function store(StoreProductoRequest $request)
     {
-        //
+        $nuevo = new Producto();
+        $nuevo->fill($request->all());
+        $nuevo->save();
+        return redirect(route('productos.index'));
     }
 
     /**
@@ -37,7 +43,8 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        $categorias = Categoria::all();
+        return view('producto.show',compact('producto','categorias'));
     }
 
     /**
@@ -45,7 +52,8 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        $categorias = Categoria::all();
+        return view('producto.edit',compact('producto', 'categorias'));
     }
 
     /**
@@ -53,7 +61,9 @@ class ProductoController extends Controller
      */
     public function update(UpdateProductoRequest $request, Producto $producto)
     {
-        //
+        $producto->fill($request->all());
+        $producto->save();
+        return redirect(route('productos.index'));
     }
 
     /**
@@ -61,6 +71,8 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+
+        $producto->delete();
+        return redirect(route('productos.index'));
     }
 }
