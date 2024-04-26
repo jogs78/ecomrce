@@ -1,20 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SessionController;
+
+use App\Http\Controllers\RolesController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Auth::routes();
+Route::get('/login',[SessionController::class, 'create'])->name('login.index');
+Route::post('/login',[SessionController::class, 'store'])->name('login.store');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/encargado', 'EncargadoController@index')->name('encargado.dashboard');
-Route::get('/cliente', 'ClienteController@index')->name('cliente.dashboard');
-Route::get('/contador', 'ContadorController@index')->name('contador.dashboard');
-Route::get('/supervisor', 'SupervisorController@index')->name('supervisor.dashboard');
-Route::get('/vendedor', 'VendedorController@index')->name('vendedor.dashboard');
+Route::get('/cliente',[RolesController::class, 'cliente'])->middleware('auth.cliente')->name('home.cliente');
+Route::get('/contador',[RolesController::class, 'contador'])->middleware('auth.contador')->name('home.contador');
+Route::get('/encargado',[RolesController::class, 'encargado'])->middleware('auth.encargado')->name('home.encargado');
+Route::get('/supervisor',[RolesController::class, 'supervisor'])->middleware('auth.supervisor')->name('home.supervisor');
+Route::get('/vendedor',[RolesController::class, 'vendedor'])->middleware('auth.vendedor')->name('home.vendedor');

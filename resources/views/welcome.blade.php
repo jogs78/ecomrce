@@ -10,11 +10,12 @@
     <hr><hr>
     <h1>INICIO DE SESION</h1>
     <form action="" method="POST">
+        @csrf
         <label>Correo Electronico</label>
-        <input type="text">
+        <input type="text" name="email">
         <br>
         <label>Contrasena</label>
-        <input type="password">
+        <input type="password" name="password">
         <br>
         <input type="submit" value="Enviar">
     </form>
