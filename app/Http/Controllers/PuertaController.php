@@ -16,6 +16,9 @@ class PuertaController extends Controller
 
     }
     public function salida(){
+
+      Auth::logout();
+
         $pagina = <<<PAGINA
 <!DOCTYPE html>
 <html>
@@ -46,7 +49,7 @@ PAGINA;
       } 
       else{
         if(Hash::check($clave_escrita,$encontrado->clave)){
-
+            //en este momento ya puede entrar
         $token = Str::random();
         $encontrado->token = $token ;
         $encontrado->save();
@@ -56,6 +59,7 @@ PAGINA;
           return response()->json($encontrado );
          }else{
           Auth::login($encontrado);
+          
           return view('layouts.principalcliente');
 
           return redirect('/');
