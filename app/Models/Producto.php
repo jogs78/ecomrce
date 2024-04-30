@@ -14,4 +14,8 @@ class Producto extends Model
         return $this->belongsTo(Categoria::class);
     }
 
+    public function propietario(){
+        return $this->belongsTo(Usuario::class);
+    }
+
 }

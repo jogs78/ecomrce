@@ -26,14 +26,15 @@ class ProductoSeeder extends Seeder
         DESCRIPCION;
         $nuevo->cantidad = 3;
         $nuevo->categoria_id = 1;
+        $nuevo->propietario_id = 11;
         $nuevo->save();
 
         $productos = [
             [
-                'nombre' => 'Lavadora', 'fecha_publicacion' => '2024-02-29', 'descripcion' => 'una lavadora', 'cantidad' => 1, 'categoria_id' => '2'                
+                'nombre' => 'Lavadora', 'fecha_publicacion' => '2024-02-29', 'descripcion' => 'una lavadora', 'cantidad' => 1, 'categoria_id' => '2', 'propietario_id' => '11'          
             ],
             [
-                'nombre' => 'Refrigerador', 'fecha_publicacion' => '2024-02-29', 'descripcion' => 'una refrigerador', 'cantidad' => 1, 'categoria_id' => '2'                
+                'nombre' => 'Refrigerador', 'fecha_publicacion' => '2024-02-29', 'descripcion' => 'una refrigerador', 'cantidad' => 1, 'categoria_id' => '2', 'propietario_id' => '12'
             ]
 
         ];

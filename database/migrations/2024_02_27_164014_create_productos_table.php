@@ -21,6 +21,10 @@ return new class extends Migration
             $table->integer('cantidad');
             $table->bigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->bigInteger('propietario_id')->unsigned();
+            $table->foreign('propietario_id')->references('id')->on('usuarios');
+
+
             
 
 
