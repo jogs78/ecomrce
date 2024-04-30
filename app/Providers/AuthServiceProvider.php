@@ -3,7 +3,13 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use App\Models\Producto;
+use App\Models\Usuario;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+
     ];
 
     /**
@@ -21,6 +27,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('comprar', function (Usuario $user, Producto $producto)
+        {
+            if($user->id != $producto->propietario_id){
+                return true;
+            }else{
+                return false;
+            }
+        });
         //
     }
 }

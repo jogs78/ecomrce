@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Producto;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\Gate;
 
 class ProductoController extends Controller
 {
@@ -23,8 +24,14 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
-        return view('producto.create',compact('categorias'));
+        if(Gate::allows('create', Producto::class )) {
+//        $this->authorize('create', Producto::class );
+$categorias = Categoria::all();
+return view('producto.create',compact('categorias'));
+
+        }else{
+            echo "NO PUEDES";
+        }
     }
 
     /**
@@ -61,7 +68,9 @@ class ProductoController extends Controller
      */
     public function update(UpdateProductoRequest $request, Producto $producto)
     {
-        $producto->fill($request->all());
+        //$producto->fill($request->all());
+
+
         $producto->save();
         return redirect(route('productos.index'));
     }

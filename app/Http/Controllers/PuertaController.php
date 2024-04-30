@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+USE Illuminate\Support\Facades\Log;
 
 
 class PuertaController extends Controller
@@ -44,6 +45,7 @@ PAGINA;
           return response()->json(['error'=>'Usuario no existe'] );
          }else{
           echo " USUARIO no existe. ";
+          Log::channel('registro')->info("EL USUARIO $nombre_usuario no se encuentra");
          }
 
       } 
@@ -59,13 +61,14 @@ PAGINA;
           return response()->json($encontrado );
          }else{
           Auth::login($encontrado);
-          
+          Log::channel('registro')->info("EL USUARIO $nombre_usuario entró");
           return view('layouts.principalcliente');
-
           return redirect('/');
          }
 
         }else{
+          Log::channel('registro')->error("EL USUARIO $nombre_usuario puso mal su contraseña");
+
           if ($request->expectsJson()){
             return response()->json(['error'=>'Credenciales incorrectas'] );
            }else{

@@ -14,17 +14,25 @@
   <td><a href="{{route('productos.show',$encontrado->id)}}">{{$encontrado->nombre}}</a></td>
   <td>{{$encontrado->descripcion}}</td>
   <td> 
-    <a href="{{route('productos.edit',$encontrado->id)}}">EDITAR</a>
-    <form action="{{route('productos.destroy',$encontrado->id)}}" method="post">
-     @method('DELETE')
-     @csrf
-     <input type="submit" value="BORRAR">
+    @can('update', $encontrado)
+      <a href="{{route('productos.edit',$encontrado->id)}}">EDITAR</a>
+    @endcan
  
- 
- 
- 
-    </form>
- 
+    @can('delete', $encontrado)
+      <form action="{{route('productos.destroy',$encontrado->id)}}" method="post">
+        @method('DELETE')
+        @csrf
+        <input type="submit" value="BORRAR">
+      </form>
+    @endcan
+
+    @can('comprar', $encontrado)
+      COMPRAR
+    @endcan
+
+
+
+
   </td>
  </tr>
  @empty
@@ -36,7 +44,11 @@
  
  </table>
  
- 
- <a href="{{route('productos.create')}}">NUEVO PRODUCTO</a>
+
+@can('create', App\Models\Producto::class)
+  <a href="{{route('productos.create')}}">NUEVO PRODUCTO</a>    
+@endcan
+
+
  
 @endsection
