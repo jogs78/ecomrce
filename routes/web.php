@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
-
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RolesController;
 
 Route::get('/', function () {
@@ -17,3 +17,6 @@ Route::get('/contador',[RolesController::class, 'contador'])->middleware('auth.c
 Route::get('/encargado',[RolesController::class, 'encargado'])->middleware('auth.encargado')->name('home.encargado');
 Route::get('/supervisor',[RolesController::class, 'supervisor'])->middleware('auth.supervisor')->name('home.supervisor');
 Route::get('/vendedor',[RolesController::class, 'vendedor'])->middleware('auth.vendedor')->name('home.vendedor');
+
+Route::get('/listar-productos',[ProductoController::class, 'index'])->name('lista');
+
