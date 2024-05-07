@@ -19,4 +19,5 @@ Route::get('/supervisor',[RolesController::class, 'supervisor'])->middleware('au
 Route::get('/vendedor',[RolesController::class, 'vendedor'])->middleware('auth.vendedor')->name('home.vendedor');
 
 Route::get('/listar-productos',[ProductoController::class, 'index'])->name('lista');
+Route::get('/productos/{id}', [ProductoController::class, 'verDetalles'])->name('detalles');
 

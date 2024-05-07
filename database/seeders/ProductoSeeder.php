@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\User;
 
 class ProductoSeeder extends Seeder
 {
@@ -139,13 +140,14 @@ class ProductoSeeder extends Seeder
         $contadorConfirmados = 0;
         $contadorNoConfirmados = 0;
 
+
         for ($i = 0; $i < 50; $i++) {
             $producto = new Producto();
             $producto->nombre = $NomProductos[$i];
             $producto->idCategoria = $categoriaActual;
             $producto->stock = 50;
             $producto->descripcion = $descripciones[$i];
-            $producto->idUser = 5;
+            $producto->idUser = 4;
 
             // Verificar si el producto debe ser confirmado o no
             if ($contadorConfirmados < 30) {

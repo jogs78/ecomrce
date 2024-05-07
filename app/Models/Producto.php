@@ -25,4 +25,14 @@ class Producto extends Model
     {
         return $this->belongsTo(User::class, 'idUser');
     }
+
+    public function respuestas()
+{
+    return $this->hasMany(Respuesta::class);
+}
+
+public function preguntas()
+{
+    return $this->hasMany(Pregunta::class, 'idProducto');
+}
 }

@@ -14,11 +14,13 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $productos = Producto::all();
-        if($request->expectsJson())
-            return $producto->toJson();
-        else
-            return view('producto-home',compact('productos'));
+        $productos = Producto::with('preguntas.user', 'respuestas.usuario')->get();
+
+        if ($request->expectsJson()) {
+            return $productos->toJson();
+        } else {
+            return view('producto-home', compact('productos'));
+        }
     }
 
     /**
@@ -42,7 +44,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+       
     }
 
     /**
@@ -68,4 +70,10 @@ class ProductoController extends Controller
     {
         //
     }
+
+    public function verDetalles($id)
+{
+    $producto = Producto::findOrFail($id);
+    return view('detalles', compact('producto'));
+}
 }

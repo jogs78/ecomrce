@@ -31,7 +31,7 @@
                         <p class="card-text">Confirmado: {{ $producto->confirmado ? 'Sí' : 'No' }}</p>
                         <p class="card-text">Usuario: {{ $producto->user->name }}</p>
 
-                        <a href="#" class="btn btn-primary">Ver Detalles</a>
+                        <a href="{{ route('detalles', $producto->id) }}" class="btn btn-primary">Ver Detalles</a>
                     </div>
                 </div>
             </div>
