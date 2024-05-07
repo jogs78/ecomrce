@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\CategoriaController;
 
 Route::get('/', function () {
     return view('home');
@@ -20,4 +21,6 @@ Route::get('/vendedor',[RolesController::class, 'vendedor'])->middleware('auth.v
 
 Route::get('/listar-productos',[ProductoController::class, 'index'])->name('lista');
 Route::get('/productos/{id}', [ProductoController::class, 'verDetalles'])->name('detalles');
+Route::get('categorias', [CategoriaController::class, 'index'])->name('categorias');
+Route::get('categorias/{id}/productos', [CategoriaController::class, 'productosPorCategoria'])->name('productosPorCategoria');
 

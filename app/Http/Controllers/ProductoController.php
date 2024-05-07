@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Categoria;
 use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use Illuminate\Http\Request;
@@ -55,6 +56,7 @@ class ProductoController extends Controller
         //
     }
 
+
     /**
      * Update the specified resource in storage.
      */
@@ -73,6 +75,7 @@ class ProductoController extends Controller
 
     public function verDetalles($id)
 {
+
     $producto = Producto::findOrFail($id);
     return view('detalles', compact('producto'));
 }

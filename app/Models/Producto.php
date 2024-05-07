@@ -28,7 +28,7 @@ class Producto extends Model
 
     public function respuestas()
 {
-    return $this->hasMany(Respuesta::class);
+    return $this->hasMany(Respuesta::class, 'idPregunta');
 }
 
 public function preguntas()
