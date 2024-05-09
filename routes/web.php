@@ -40,5 +40,6 @@ Route::put('actualiza-usuarios/{usuario}',[UsuarioController::class,'update'])->
 Route::delete('destruir-usuarios/{usuario}',[UsuarioController::class,'destroy'])->name('destruir');
 
 Route::resource('categorias', CategoriaController::class);
-Route::resource('productos', ProductoController::class);
+Route::resource('productos', ProductoController::class);//(GET POST PUT)
+Route::get('comprar-productos/{cual}',[ProductoController::class,'comprar'])->name('productos.comprar');
 

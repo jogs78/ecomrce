@@ -27,7 +27,7 @@
     @endcan
 
     @can('comprar', $encontrado)
-      COMPRAR
+      <a href="{{route('productos.comprar',$encontrado->id )}}">COMPRAR</a>
     @endcan
 
 
