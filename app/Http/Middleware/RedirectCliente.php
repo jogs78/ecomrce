@@ -17,7 +17,7 @@ class RedirectCliente
     {
         if(auth()->check())
         {
-        if(auth()->user()->rol == 'Cliente'){
+        if(auth()->user()->rol == 'Cliente' or auth()->user()->rol == 'Vendedor'){
         return $next($request);
         }
         }

@@ -13,9 +13,13 @@ class Producto extends Model
         'stock',
         'descripcion',
         'idUser',
-        'confirmado' // Nuevo campo agregado
+        'precio' // Nuevo campo agregado
     ];
 
+    public function consignas()
+    {
+        return $this->hasMany(Consiga::class,'idProducto');
+    }
     public function categoria()
     {
         return $this->belongsTo(Categoria::class, 'idCategoria');
@@ -35,4 +39,14 @@ public function preguntas()
 {
     return $this->hasMany(Pregunta::class, 'idProducto');
 }
+
+public function transacciones()
+{
+    return $this->hasMany(Transaccion::class, 'idProducto');
+}
+
+public function fotos()
+    {
+        return $this->hasMany(Foto::class, 'idProducto');
+    }
 }

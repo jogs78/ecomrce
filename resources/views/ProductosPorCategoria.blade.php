@@ -1,27 +1,13 @@
-<!-- productosPorCategoria.blade.php -->
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('contenido')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos por Categoría</title>
-    <!-- Incluir Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Estilos personalizados */
-        .card {
-            margin-bottom: 20px; /* Espacio entre tarjetas */
-        }
-    </style>
-</head>
 
 <body>
     <div class="container">
         <h1>Productos de la Categoría {{ $categoria->nombre }}</h1>
 
         <!-- Botón para regresar a categorías -->
-        <a href="{{ route('categorias') }}" class="btn btn-secondary mb-4">Volver a Categorías</a>
+     
 
         <!-- Formulario de búsqueda -->
         <form action="{{ route('productosPorCategoria', $categoria->id) }}" method="GET" class="mb-4">
@@ -34,21 +20,28 @@
         </form>
 
         <div class="row">
-            @foreach($productos as $producto)
+            @foreach($consignas as $producto)
+            @if($producto->estado == 'Aceptado')
                 <div class="col-md-4">
                     <div class="card">
                         <img src="{{ $producto->imagen }}" class="card-img-top" alt="{{ $producto->nombre }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $producto->nombre }}</h5>
-                            <p class="card-text">{{ $producto->descripcion }}</p>
-                            <p class="card-text">Stock: {{ $producto->stock }}</p>
-                            <p class="card-text">Categoria: {{ $producto->categoria->nombre }}</p>
-                            <p class="card-text">Confirmado: {{ $producto->confirmado ? 'Sí' : 'No' }}</p>
-                            <p class="card-text">Usuario: {{ $producto->user->name }}</p>
+                            <h5 class="card-title">{{ $producto->producto->nombre }}</h5>
+                            <p class="card-text">{{ $producto->producto->descripcion }}</p>
+                            <p class="card-text">Stock: {{ $producto->producto->stock }}</p>
+                            <p class="card-text">Categoria: {{ $producto->producto->categoria->nombre }}</p>
+
+                            <p class="card-text">Usuario: {{ $producto->producto->user->name }}</p>
                             <a href="{{ route('detalles', $producto->id) }}" class="btn btn-primary">Ver Detalles</a>
+                            @if (Auth::check())
+                                    @if (Auth::user()->rol == 'Cliente')
+                                        <a href="{{ route('subirEvidencia', $producto->id) }}" class="btn btn-primary">Comprar</a>
+                                    @endif
+                            @endif
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
         </div>
     </div>
@@ -59,6 +52,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
-</html>
 
+@endsection
 

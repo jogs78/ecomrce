@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Producto</title>
-    <!-- Incluir Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@extends('layouts.app')
+@section('contenido')
 
 <body>
     <div class="container">
@@ -19,10 +11,14 @@
                 <p class="card-text">{{ $producto->descripcion }}</p>
                 <p class="card-text">Stock: {{ $producto->stock }}</p>
                 <p class="card-text">Categoria: {{ $producto->categoria->nombre }}</p>
-                <p class="card-text">Confirmado: {{ $producto->confirmado ? 'Sí' : 'No' }}</p>
                 <p class="card-text">Usuario: {{ $producto->user->name }}</p>
             </div>
         </div>
+        @if (Auth::check())
+                                    @if (Auth::user()->rol == 'Cliente')
+                                        <a href="{{ route('subirEvidencia', $producto->id) }}" class="btn btn-primary">Comprar</a>
+                                    @endif
+                            @endif
 
         <div class="card mt-4">
     <div class="card-body">
@@ -31,13 +27,8 @@
             <p>No hay preguntas ni respuestas.</p>
         @else
             @foreach ($producto->preguntas as $pregunta)
-                <h6>{{ $pregunta->contenido }}</h6>
-                <p>Pregunta realizada por: Usuario 5
-                    @if ($pregunta->user)
-                        {{ $pregunta->user->name }}
-                    @endif
-                </p>
-                <ul>
+                <h3>{{ $pregunta->contenido }}</h3>
+                <p>Pregunta realizada por: {{$pregunta->user->name}}</p>
                     @foreach ($pregunta->respuestas as $respuesta)
                         <li>{{ $respuesta->contenido }}</li>
                         <p>Respuesta de:
@@ -46,15 +37,41 @@
                             @endif
                         </p>
                     @endforeach
+                    @if($producto->user->id == auth()->user()->id)
+                        <form action={{route('responderPregunta',$producto->id)}} method="POST">
+                            @csrf
+                            <div class="form-group" id="mensajeField">
+                                <label for="mensaje">Responder</label>
+                                <textarea class="form-control" id="mensaje" name="contenido"></textarea><br>
+                                <button type="submit" class="btn btn-primary">Responder</button><br>
+                            </div>
+                        </form>
+                    @endif
+                
+                <ul>
+                    
                 </ul>
             @endforeach
+        @endif
+
+        @if(auth()->check())
+            @if(auth()->user()->rol == 'Cliente')
+            <form action={{route('hacerPregunta',$producto->id)}} method="POST">
+                @csrf
+                <div class="form-group" id="mensajeField">
+                    <label for="mensaje">Pregunta</label>
+                    <textarea class="form-control" id="mensaje" name="contenido"></textarea>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+            @endif
         @endif
     </div>
 </div>
 
         
 
-        <a href="{{ route('lista') }}" class="btn btn-primary mt-4">Ver Productos</a>
+
     </div>
 
     <!-- Incluir Bootstrap JS y jQuery -->
@@ -63,4 +80,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+
+@endsection

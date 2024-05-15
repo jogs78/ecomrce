@@ -1,48 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
-    <!-- Incluir Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Estilos personalizados */
-        .card {
-            margin-bottom: 20px; /* Espacio entre tarjetas */
-        }
-    </style>
-</head>
-
-<body>
+@section('contenido')
     <div class="container">
         <h1>Listado de Productos</h1>
-        <div class="row">
-            @foreach($productos as $producto)
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ $producto->imagen }}" class="card-img-top" alt="{{ $producto->nombre }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $producto->nombre }}</h5>
-                        <p class="card-text">{{ $producto->descripcion }}</p>
-                        <p class="card-text">Stock: {{ $producto->stock }}</p>
-                        <p class="card-text">Categoria: {{ $producto->categoria->nombre }}</p>
-                        <p class="card-text">Confirmado: {{ $producto->confirmado ? 'Sí' : 'No' }}</p>
-                        <p class="card-text">Usuario: {{ $producto->user->name }}</p>
-
-                        <a href="{{ route('detalles', $producto->id) }}" class="btn btn-primary">Ver Detalles</a>
-                    </div>
+        <form action="{{ route('buscarProductos') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Buscar producto..." value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
             </div>
+        </form>
+        <div class="row">
+            @foreach($consignas as $producto)
+                @if($producto->estado == 'Aceptado')
+                    <div class="col-md-4">
+                        <div class="card">
+                        @if($producto->producto->fotos->count() > 0)
+    <ul>
+    @foreach ($producto->producto->fotos->all() as $foto)
+        <li>
+            <img src ="{{ asset('storage/' . $foto->ruta) }}" alt="imagen-producto" style="max-width: 100px; max-height: 100px;"/>
+        </li>
+    @endforeach
+    </ul>
+@else
+    <img src="{{ asset('storage/default-image.jpg') }}" class="card-img-top" alt="Imagen por defecto">
+@endif
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $producto->producto->nombre }}</h5>
+                                <p class="card-text">{{ $producto->producto->descripcion }}</p>
+                                <p class="card-text">Stock: {{ $producto->producto->stock }}</p>
+                                <p class="card-text">Categoria: {{ $producto->producto->categoria->nombre }}</p>
+                                <p class="card-text">Precio: {{ $producto->producto->precio }}</p>
+                                <p class="card-text">Usuario: {{ $producto->producto->user->name }}</p>
+                                <a href="{{ route('detalles', $producto->id) }}" class="btn btn-primary">Ver Detalles</a>
+                                @if (Auth::check())
+                                    @if (Auth::user()->rol == 'Cliente')
+                                        <a href="{{ route('subirEvidencia', $producto->id) }}" class="btn btn-primary">Comprar</a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endforeach
         </div>
     </div>
-
     <!-- Incluir Bootstrap JS y jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+@endsection

@@ -20,57 +20,24 @@ class ProductoSeeder extends Seeder
         //POR SI NECESITA -> $arregloUsuarios = [];
         $contadorCategoria = 1;
         $categoriaActual = 1;
-        $NomProductos = [
-            // Tecnología
-            'Laptop UltraSlim',
-            'Auriculares Bluetooth BassBoost',
-            'Reloj Inteligente SmartTech',
-            'Cámara Digital HD CapturePro',
-            'Botella de Agua Térmica EcoFresh',
-            'TV LED 4K UltraHD VisionMax',
-            'Máquina de Café Espresso Barista',
-            'Secadora de Pelo iStyle',
-            'Aspiradora Robótica SmartClean',
-            'Escáner Portátil ScanPro',
         
-            // Moda
-            'Camisa de Algodón Premium',
-            'Zapatillas Deportivas AirFlex',
-            'Reloj de Lujo TimeMaster',
-            'Juego de Toallas de Lujo',
-            'Lentes de Sol Polarizados SunShield',
-            'Pantalones Vaqueros UltraFlex',
-            'Bufanda de Invierno CozyWrap',
-            'Gorra de Moda StreetStyle',
-            'Bolso Elegante ChicStyle',
-            'Botas de Cuero LuxuryStyle',
-        
-            // Jardinería
-            'Set de Herramientas de Jardinería GreenGarden',
-            'Macetas Decorativas TerraCotta',
-            'Semillas Orgánicas Premium',
-            'Manguera de Riego FlexiFlow',
-            'Guantes de Jardinería ComfortGrip',
-            'Invernadero Portátil GreenHouse',
-            'Fertilizante Natural BioGrow',
-            'Podadora de Césped PowerTrim',
-            'Abono Orgánico EcoCare',
-            'Plantas de Interior ExoticLife',
-        
-            // Deportes
-            'Bicicleta de Montaña TrailBlazer',
-            'Set de Pesas PowerLift',
-            'Balón de Fútbol UltraGrip',
-            'Raqueta de Tenis ProMaster',
-            'Mochila Deportiva AdventurePack',
-            'Cinta de Correr RunningPro',
-            'Guantes de Entrenamiento FitGrip',
-            'Pelota de Yoga BalanceFit',
-            'Gafas de Natación AquaView',
-            'Ropa Deportiva FlexFit',
+        $contadorConfirmados = 0;
+        $contadorNoConfirmados = 0;
+        $nomProductos = [
+            // Electrodomésticos
+            'Lavadora de Carga Frontal EcoClean',
+            'Refrigerador Inteligente FrostFree',
+            'Aspiradora Robotizada SmartClean Pro',
+            'Licuadora Multifunción PowerBlend',
+            'Horno de Microondas QuickHeat',
+            'Cafetera Programable BrewMaster',
+            'Plancha de Vapor EasyGlide',
+            'Secadora de Ropa SmartDry',
+            'Ventilador de Torre CoolBreeze',
+            'Purificador de Aire CleanAir Plus',
         
             // Videojuegos
-            'Juego de Consola NextGen',
+            'Consola de Videojuegos NextGen',
             'Controlador Gaming ElitePro',
             'Teclado Mecánico Gamer Xtreme',
             'Monitor de Alta Resolución GameView',
@@ -80,83 +47,128 @@ class ProductoSeeder extends Seeder
             'Tarjeta Gráfica UltraRender',
             'Micrófono Profesional StreamMic',
             'Alfombrilla Gaming SpeedTrack',
-        ];
         
+            // Dispositivos Móviles
+            'Smartphone UltraSlim 5G',
+            'Tablet ProTouch con Lápiz Stylus',
+            'Auriculares Bluetooth BassBoost',
+            'Cargador Portátil PowerCharge',
+            'Smartwatch Fitness Tracker',
+            'Fundas Resistentes para Móvil',
+            'Cable USB de Carga Rápida',
+            'Soporte Magnético para Auto',
+            'Batería Externa de Alta Capacidad',
+            'Lentes de Realidad Virtual VRVision',
+        
+            // Computadoras y Accesorios
+            'Laptop Ultraligera ProTech',
+            'Impresora Multifunción PrintSmart',
+            'Monitor Curvo de Gran Tamaño',
+            'Teclado Inalámbrico SlimTouch',
+            'Mouse Ergonómico para Oficina',
+            'Cámara Web de Alta Definición',
+            'Disco Duro Externo BackupDrive',
+            'Mochila para Portátil TechBag',
+            'Altavoces Bluetooth SoundBoost',
+            'Router de Alta Velocidad NetConnect',
+        
+            // Electrónica de Consumo
+            'TV LED 4K UltraHD VisionMax',
+            'Barra de Sonido SurroundBar',
+            'Proyector HD CinemaView',
+            'Reproductor Blu-ray SmartPlayer',
+            'Sistema de Audio Hi-Fi SoundMaster',
+            'Auriculares Inalámbricos HiRes',
+            'Receptor Bluetooth AudioLink',
+            'Cargador Inalámbrico QuickCharge',
+            'Control Remoto Universal SmartControl',
+            'Luz LED Inteligente SmartLight',
+        ];
+        $precios = [
+            // Electrodomésticos
+            750, 1200, 550, 80, 150, 200, 40, 600, 80, 300,
+            // Videojuegos
+            500, 80, 100, 400, 150, 300, 40, 700, 80, 50,
+            // Dispositivos Móviles
+            1000, 300, 100, 30, 200, 20, 10, 15, 50, 100,
+            // Computadoras y Accesorios
+            1500, 200, 400, 50, 30, 100, 150, 50, 80, 120,
+            // Electrónica de Consumo
+            1200, 300, 600, 100, 500, 150, 80, 30, 40, 20,
+        ];
+        // Descripciones de productos
         $descripciones = [
-            'Laptop ultradelgada y ligera con potente rendimiento y pantalla de alta resolución.',
-            'Auriculares inalámbricos con tecnología Bluetooth y potente mejora de bajos.',
-            'Reloj inteligente con pantalla táctil, seguimiento de actividad y notificaciones inteligentes.',
-            'Cámara digital de alta definición con zoom óptico, grabación de video en HD y modos avanzados de fotografía.',
-            'Botella de agua térmica con aislamiento de doble pared y diseño ecológico.',
-            'Televisor LED de alta definición con resolución 4K, colores vibrantes y sonido envolvente.',
-            'Máquina de café espresso con sistema automático, espumador de leche y variedad de ajustes de café.',
-            'Secadora de cabello profesional con múltiples configuraciones de temperatura y velocidad.',
-            'Aspiradora robotizada con tecnología inteligente de limpieza y control remoto desde tu dispositivo móvil.',
-            'Escáner portátil de documentos con alta resolución y capacidad de digitalización rápida.',
-            'Camisa de algodón suave y transpirable con diseño elegante y detalles de calidad.',
-            'Zapatillas deportivas con tecnología AirFlex para mayor comodidad y soporte durante el ejercicio.',
-            'Reloj de lujo con mecanismo automático, diseño sofisticado y materiales de alta calidad.',
-            'Juego de toallas de lujo de algodón absorbente y suave para uso diario en el baño.',
-            'Lentes de sol polarizados con protección UV, diseño moderno y monturas resistentes.',
-            'Pantalones vaqueros cómodos y flexibles para un estilo casual y versátil.',
-            'Bufanda suave y abrigada para los días fríos de invierno.',
-            'Gorra de moda con diseño urbano y ajuste cómodo.',
-            'Bolso elegante para complementar tu look con estilo.',
-            'Botas de cuero de alta calidad para un toque de lujo y durabilidad.',
-            'Set completo de herramientas de jardinería para mantener tu jardín en perfecto estado.',
-            'Macetas decorativas de terracota para plantas de interior y exterior.',
-            'Semillas orgánicas de alta calidad para cultivar tu propio huerto en casa.',
-            'Manguera de riego flexible y resistente para mantener tus plantas hidratadas.',
-            'Guantes de jardinería con agarre cómodo y protección para tus manos durante las labores en el jardín.',
-            'Invernadero portátil para proteger tus plantas y crear un ambiente ideal para su crecimiento.',
-            'Fertilizante natural para promover el desarrollo saludable de tus plantas.',
-            'Podadora de césped eléctrica para mantener tu jardín en orden.',
-            'Abono orgánico para mejorar la calidad del suelo y estimular el crecimientode las Plantas',
-            'Plantas de interior de variedades exóticas para agregar belleza y frescura a tu hogar.',
-            'Bicicleta de montaña con cuadro resistente y componentes de alta calidad para aventuras off-road.',
-            'Set de pesas para entrenamiento de fuerza con barras y discos de diferentes pesos.',
-            'Balón de fútbol con diseño aerodinámico y agarre mejorado para un juego preciso.',
-            'Raqueta de tenis profesional con tecnología de absorción de impactos y agarre antideslizante.',
-            'Mochila deportiva con múltiples compartimentos y sistema de ajuste ergonómico.',
-            'Cinta de correr para entrenamientos intensivos en casa o en el gimnasio.',
-            'Guantes de entrenamiento con agarre cómodo y protección para tus manos.',
-            'Pelota de yoga para ejercicios de equilibrio, fuerza y flexibilidad.',
-            'Gafas de natación con diseño aerodinámico y visión clara bajo el agua.',
-            'Ropa deportiva diseñada para brindar comodidad y libertad de movimiento.',
-            'Juego de consola de última generación con gráficos de alta definición y experiencias de juego envolventes.',
-            'Controlador para juegos con diseño ergonómico y botones personalizables para una experiencia de juego óptima.',
-            'Teclado mecánico para juegos con respuesta rápida y retroiluminación personalizable.',
-            'Monitor de alta resolución diseñado para jugadores con imágenes nítidas y tiempos de respuesta rápidos.',
-            'Auriculares para juegos con sonido envolvente y cancelación de ruido para una experiencia inmersiva.',
-            'Silla gaming ergonómica para largas sesiones de juego cómodas y saludables.',
-            'Mouse óptico de precisión para movimientos rápidos y precisos durante el juego.',
-            'Tarjeta gráfica potente para renderizar gráficos de alta calidad en tus juegos favoritos.',
-            'Micrófono profesional para streaming y comunicación clara en juegos en línea.',
-            'Alfombrilla gaming con superficie de deslizamiento suave y base antideslizante para un control preciso.',
-
-
-        ];
+            // Electrodomésticos
+            'Lavadora de carga frontal con capacidad de 10 kg y tecnología ecoamigable.',
+            'Refrigerador inteligente con control de temperatura digital y dispensador de agua.',
+            'Aspiradora robotizada con mapeo inteligente y sistema de limpieza programable.',
+            'Licuadora multifunción con múltiples velocidades y cuchillas de acero inoxidable.',
+            'Horno de microondas con funciones automáticas de cocción y descongelado rápido.',
+            'Cafetera programable con jarra térmica y sistema de preparación avanzado.',
+            'Plancha de vapor con suela antiadherente y regulador de temperatura.',
+            'Secadora de ropa con programas de secado rápido y protección de tejidos.',
+            'Ventilador de torre con oscilación automática y temporizador programable.',
+            'Purificador de aire con filtro HEPA y sistema de eliminación de olores.',
         
-        $contadorConfirmados = 0;
-        $contadorNoConfirmados = 0;
-
-
+            // Videojuegos
+            'Consola de videojuegos de última generación con gráficos de alta definición.',
+            'Controlador gaming con diseño ergonómico y botones personalizables.',
+            'Teclado mecánico para juegos con retroiluminación RGB y teclas programables.',
+            'Monitor de alta resolución con tiempo de respuesta rápido y tecnología FreeSync.',
+            'Auriculares gaming con sonido envolvente y cancelación de ruido.',
+            'Silla gamer ergonómica con ajuste de altura y reposabrazos acolchados.',
+            'Mouse óptico de precisión con sensor ajustable y botones programables.',
+            'Tarjeta gráfica de alto rendimiento para juegos exigentes y edición de video.',
+            'Micrófono profesional para streaming y comunicación clara en juegos en línea.',
+            'Alfombrilla gaming con superficie de deslizamiento suave y base antideslizante.',
+        
+            // Dispositivos Móviles
+            'Smartphone ultradelgado con conectividad 5G y pantalla AMOLED de alta resolución.',
+            'Tablet con pantalla táctil de 10 pulgadas, procesador potente y lápiz stylus incluido.',
+            'Auriculares inalámbricos con tecnología Bluetooth y potente mejora de bajos.',
+            'Cargador portátil con capacidad de carga rápida y diseño compacto.',
+            'Smartwatch con monitorización de actividad, notificaciones inteligentes y resistencia al agua.',
+            'Fundas resistentes para móvil con protección contra golpes y caídas.',
+            'Cable USB de carga rápida con conectores reforzados y longitud extra.',
+            'Soporte magnético para auto con rotación de 360 grados y fácil instalación.',
+            'Batería externa de alta capacidad para cargar dispositivos móviles en movimiento.',
+            'Lentes de realidad virtual con ajuste ergonómico y experiencia inmersiva.',
+        
+            // Computadoras y Accesorios
+            'Laptop ultraligera con procesador de alta velocidad y batería de larga duración.',
+            'Impresora multifunción con escáner integrado y conectividad inalámbrica.',
+            'Monitor curvo de gran tamaño con resolución 4K y tecnología de colores vivos.',
+            'Teclado inalámbrico con teclas silenciosas y diseño delgado.',
+            'Mouse ergonómico para oficina con sensor óptico de alta precisión.',
+            'Cámara web de alta definición con micrófono integrado y ajuste automático de luz.',
+            'Disco duro externo con capacidad ampliable y transferencia de datos rápida.',
+            'Mochila para portátil con compartimentos acolchados y diseño resistente al agua.',
+            'Altavoces Bluetooth con sonido envolvente y conexión multipunto.',
+            'Router de alta velocidad con antenas optimizadas y configuración sencilla.',
+        
+            // Electrónica de Consumo
+            'TV LED 4K UltraHD con HDR y tecnología de mejora de imágenes.',
+            'Barra de sonido con subwoofer integrado y modos de audio personalizados.',
+            'Proyector HD con brillo intenso y conectividad HDMI.',
+            'Reproductor Blu-ray con escalado de alta definición y reproducción de discos 3D.',
+            'Sistema de audio Hi-Fi con altavoces estéreo y conexión Bluetooth.',
+            'Auriculares inalámbricos con calidad de audio premium y cancelación de ruido.',
+            'Receptor Bluetooth para conectar dispositivos de audio sin cables.',
+            'Cargador inalámbrico con tecnología de carga rápida y diseño elegante.',
+            'Control remoto universal para dispositivos de entretenimiento en el hogar.',
+            'Luz LED inteligente con control de color y programación de escenas.',
+        ];
+        $usuariosPermitidos = [5, 10, 11, 12, 13, 14, 15];
         for ($i = 0; $i < 50; $i++) {
             $producto = new Producto();
-            $producto->nombre = $NomProductos[$i];
+            $producto->nombre = $nomProductos[$i];
             $producto->idCategoria = $categoriaActual;
-            $producto->stock = 50;
+            $producto->stock = random_int(10, 50);
             $producto->descripcion = $descripciones[$i];
-            $producto->idUser = 4;
+            $producto->precio = $precios[$i];
+            $producto->idUser = $usuariosPermitidos[array_rand($usuariosPermitidos)];
 
             // Verificar si el producto debe ser confirmado o no
-            if ($contadorConfirmados < 30) {
-                $producto->confirmado = true;
-                $contadorConfirmados++;
-            } else {
-                $producto->confirmado = false;
-                $contadorNoConfirmados++;
-            }
 
             $producto->save();
 

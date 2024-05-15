@@ -14,7 +14,13 @@ class CategoriaSeeder extends Seeder
     public function run(): void
     {
 
-    $arreglo = ['Tecnologia', 'Moda', 'Jardineria', 'Deportes', 'Videojuegos'];
+    $arreglo =  [
+        'Electrodomésticos',
+        'Videojuegos',
+        'Dispositivos móviles',
+        'Computadoras y accesorios',
+        'Electrónica de consumo'
+    ];
     foreach($arreglo as $arreglo){
     $cat = new Categoria();
     $cat -> nombre = $arreglo;

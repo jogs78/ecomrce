@@ -18,8 +18,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProductoSeeder::class,
             PreguntaSeeder::class,
-            RespuestaSeeder::class
-            // Otros seeders
+            RespuestaSeeder::class,
+            TransaccionSeeder::class,
+            ConsigaSeeder::class,
+            
+            
         ]);
 
         

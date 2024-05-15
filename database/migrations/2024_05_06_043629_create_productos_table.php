@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('descripcion');
             $table->unsignedBigInteger('idUser'); 
+            $table->decimal('precio', 14, 2);
             $table->timestamps();
-            $table->boolean('confirmado');
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('idCategoria')->references('id')->on('categorias')->onDelete('cascade');
         });

@@ -22,7 +22,7 @@ class Pregunta extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'idUser');
+        return $this->belongsTo(User::class, 'idUsuario');
     }
 
     public function respuestas()

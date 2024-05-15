@@ -15,82 +15,46 @@ class RespuestaSeeder extends Seeder
     {
         $contador = 1;
         $actual = 1;
-        $respuestas = [
-
-            // Respuestas para la pregunta sobre la Laptop UltraSlim
-            'La duración de la batería es de aproximadamente 8 horas con uso continuo.',
-            'La batería de esta laptop puede durar hasta 8 horas sin necesidad de recargarla.',
-            'La batería de esta laptop tiene una autonomía de hasta 8 horas bajo uso normal.',
-            'Con un uso continuo, la batería de esta laptop puede durar hasta 8 horas.',
-            'La batería de esta laptop proporciona hasta 8 horas de duración con una carga completa.',
-            // Respuestas para la pregunta sobre la Cámara Digital HD CapturePro
-            'Sí, esta cámara incluye un estuche de transporte acolchado.',
-            'Sí, la cámara viene con un estuche de transporte acolchado para mayor protección.',
-            'La cámara viene acompañada de un estuche de transporte acolchado para su protección.',
-            'Este modelo de cámara incluye un estuche de transporte acolchado.',
-            'Sí, el paquete incluye un estuche de transporte acolchado para la cámara.',
-            // Respuestas para la pregunta sobre la Máquina de Café Espresso Barista
-            'Puedes preparar café expreso, capuchino y latte, entre otras variedades.',
-            'Con esta máquina puedes preparar café expreso, capuchino, latte y otras deliciosas variedades.',
-            'Podrás preparar café expreso, capuchino, latte y otras bebidas con esta máquina.',
-            'Esta máquina te permite preparar café expreso, capuchino, latte y más.',
-            'La máquina de café barista te permite preparar diferentes tipos de café como expreso, capuchino y latte.',
-            // Respuestas para la pregunta sobre el Escáner Portátil ScanPro
-            'La resolución máxima de escaneo es de 1200 ppp (puntos por pulgada).',
-            'El escáner tiene una resolución máxima de escaneo de 1200 ppp (puntos por pulgada).',
-            'El máximo nivel de resolución de escaneo es de 1200 ppp (puntos por pulgada).',
-            'Con este escáner, puedes alcanzar una resolución máxima de 1200 ppp (puntos por pulgada).',
-            'La resolución máxima de este escáner portátil es de 1200 ppp (puntos por pulgada).',
-            // Respuestas para la pregunta sobre el Reloj de Lujo TimeMaster
-            'La garantía de este reloj es de 2 años.',
-            'El reloj TimeMaster está respaldado por una garantía de 2 años.',
-            'Este reloj de lujo cuenta con una garantía de 2 años.',
-            'El reloj viene con una garantía estándar de 2 años.',
-            'La garantía de este reloj de lujo es de 2 años.',
-            // Respuestas para la pregunta sobre los Pantalones Vaqueros UltraFlex
-            'Sí, estos pantalones vienen en diferentes tallas para adaptarse a distintos cuerpos.',
-            'Los pantalones están disponibles en una variedad de tallas para un ajuste perfecto.',
-            'Puedes elegir estos pantalones en varias tallas para un ajuste cómodo.',
-            'Este modelo de pantalones viene en diferentes tallas para satisfacer las necesidades de todos.',
-            'Sí, estos pantalones están disponibles en diferentes tallas para adaptarse a diferentes cuerpos.',
-            // Respuestas para la pregunta sobre el Bolso Elegante ChicStyle
-            'El material del bolso es resistente al agua y fácil de limpiar.',
-            'Este bolso está fabricado con material resistente al agua y de fácil mantenimiento.',
-            'El bolso elegante ChicStyle está hecho de material resistente al agua y lavable.',
-            'El bolso está elaborado con un material que es resistente al agua y fácil de mantener.',
-            'Sí, el bolso está fabricado con un material que es resistente al agua y de fácil cuidado.',
-            // Respuestas para la pregunta sobre las Macetas Decorativas TerraCotta
-            'Sí, estas macetas son aptas para uso en exteriores.',
-            'Las macetas TerraCotta son ideales tanto para uso en interiores como en exteriores.',
-            'Estas macetas son adecuadas para su uso tanto en espacios interiores como exteriores.',
-            'Estas macetas están diseñadas para resistir condiciones exteriores, como la exposición al sol y la lluvia.',
-            'Sí, estas macetas están especialmente diseñadas para su uso en exteriores.',
-            // Respuestas para la pregunta sobre los Guantes de Jardinería ComfortGrip
-            'Estos guantes son de tamaño estándar y se ajustan a la mayoría de las manos.',
-            'Los guantes ComfortGrip vienen en tamaño estándar y se adaptan a la mayoría de las manos.',
-            'Puedes encontrar estos guantes en tamaño estándar, ideales para la mayoría de las manos.',
-            'Estos guantes están diseñados en tamaño estándar para ofrecer un ajuste cómodo en la mayoría de las manos.',
-            'Sí, estos guantes de jardinería están disponibles en tamaño estándar para adaptarse a la mayoría de las manos.',
-            // Respuestas para la pregunta sobre la Podadora de Césped PowerTrim
-            'El ancho de corte de esta podadora es de 40 cm.',
-            'La podadora de césped PowerTrim tiene un ancho de corte de 40 cm.',
-            'Con esta podadora puedes cortar el césped con un ancho de corte de 40 cm.',
-            'El ancho de corte de esta podadora es de 40 centímetros.',
-            'La podadora PowerTrim tiene una capacidad de corte de 40 cm de ancho.',
-            ];
+        $respuestasImpares = [
+            // Respuestas para la pregunta sobre la Lavadora de Carga Frontal EcoClean
+            'Las características principales de esta lavadora incluyen capacidad de carga frontal, eficiencia energética y múltiples programas de lavado.',
+            // Respuestas para la pregunta sobre la Aspiradora Robotizada SmartClean Pro
+            'Esta aspiradora robotizada funciona de manera autónoma, mapeando y limpiando diferentes áreas de forma eficiente, lo que la hace conveniente y práctica.',
+            // Respuestas para la pregunta sobre la Cafetera Programable BrewMaster
+            'La cafetera programable ofrece la ventaja de preparar café automáticamente en horarios programados, además de tener funciones especiales para diferentes tipos de café.',
+            // Respuestas para la pregunta sobre el Ventilador de Torre CoolBreeze
+            'Este ventilador de torre se destaca por su diseño compacto, potencia de enfriamiento y funciones avanzadas de control de aire.',
+            // Respuestas para la pregunta sobre los Auriculares Gaming SurroundSound
+            'El sonido envolvente de estos auriculares mejora la experiencia de juego al proporcionar una percepción espacial más precisa de los efectos de audio del juego.',
+            // Respuestas para la pregunta sobre el Teclado Mecánico Gamer Xtreme
+            'Este teclado ofrece ventajas como respuesta táctil, durabilidad y personalización de teclas para una experiencia de juego más cómoda y eficiente.',
+            // Respuestas para la pregunta sobre la Alfombrilla Gaming SpeedTrack
+            'La alfombrilla mejora la precisión del mouse y el deslizamiento suave durante el juego, lo que permite movimientos más precisos y rápidos.',
+            // Respuestas para la pregunta sobre la Tablet ProTouch con Lápiz Stylus
+            'Esta tablet ofrece ventajas como sensibilidad táctil, compatibilidad con lápiz stylus para dibujo y escritura precisa, y diversas funciones de productividad.',
+            // Respuestas para la pregunta sobre los Auriculares Bluetooth BassBoost
+            'El BassBoost mejora la calidad de audio al resaltar los tonos graves, proporcionando una experiencia de sonido más envolvente y profunda.',
+            // Respuestas para la pregunta sobre el Soporte Magnético para Auto
+            'El soporte magnético facilita el uso del dispositivo móvil en el automóvil al proporcionar una sujeción segura y ajustable sin necesidad de clips o soportes adicionales.',
+            // Respuestas para la pregunta sobre los Lentes de Realidad Virtual VRVision
+            'Estos lentes ofrecen experiencias de realidad virtual inmersivas, compatibles con una amplia gama de dispositivos y con aplicaciones y juegos de alta calidad.',
+            // Respuestas para la pregunta sobre el Monitor Curvo de Gran Tamaño
+            'Este monitor curvo proporciona ventajas como mayor campo visual, inmersión en contenido multimedia y menor fatiga visual durante largos periodos de uso.',
+            // Respuestas para la pregunta sobre los Altavoces Bluetooth SoundBoost
+            'Estos altavoces Bluetooth mejoran la calidad de sonido y la conectividad al ofrecer audio de alta fidelidad y compatibilidad con múltiples dispositivos.',
+        ];
         
     
-        foreach($respuestas as $respuestas){
-
+        foreach ($respuestasImpares as $respuesta) {
             $Respu = new Respuesta();
-            $Respu->contenido = $respuestas;
-            $Respu->idPregunta = $actual;
-            $Respu->idUsuario = 5;
-
-            if($contador == 5){
+            $Respu->contenido = $respuesta;
+            $Respu->idPregunta = 2 * $actual - 1; // Ajustar el ID de la pregunta según su posición en el arreglo de preguntas
+            $Respu->idUsuario = random_int(10,15);
+        
+            if ($contador == 5) {
                 $contador = 1;
                 $actual++;
-            }else{
+            } else {
                 $contador++;
             }
             $Respu->save();

@@ -13,25 +13,31 @@ class PreguntaSeeder extends Seeder
      */
     public function run(): void
     {
-        $preguntas = [
-            '¿Cuál es la duración de la batería de esta laptop UltraSlim?',
-            '¿Esta cámara incluye un estuche de transporte?',
-            '¿Qué tipo de café puedes preparar con esta máquina de café Barista?',
-            '¿Cuál es la resolución máxima de escaneo de este escáner portátil?',
-            '¿Cuál es la garantía de este reloj de lujo TimeMaster?',
-            '¿Estos pantalones vaqueros vienen en diferentes tallas?',
-            '¿Qué material se utiliza para fabricar este bolso elegante ChicStyle?',
-            '¿Son aptas estas macetas para uso en exteriores?',
-            '¿Qué tamaño de manos son adecuados para estos guantes de jardinería ComfortGrip?',
-            '¿Cuál es el ancho de corte de esta podadora de césped PowerTrim?'
+        $preguntasImpares = [
+            '¿Cuáles son las características principales de esta lavadora?',
+            '¿Cómo funciona esta aspiradora robotizada y cuáles son sus ventajas?',
+            '¿Qué características tiene esta cafetera programable y cómo mejora la experiencia de preparar café?',
+            '¿Qué lo hace especial en comparación con otros ventiladores de torre?',
+            '¿Cómo mejora la experiencia de juego el sonido envolvente de estos auriculares?',
+            '¿Qué ventajas ofrece este teclado mecánico para jugadores profesionales?',
+            '¿Cómo mejora esta alfombrilla la precisión y el deslizamiento durante el juego?',
+            '¿Qué funciones y ventajas ofrece esta tablet en comparación con otras?',
+            '¿Cómo mejora la experiencia de audio el BassBoost de estos auriculares Bluetooth?',
+            '¿Cómo facilita este soporte magnético el uso del dispositivo móvil en el automóvil?',
+            '¿Qué experiencias de realidad virtual ofrece y qué dispositivos son compatibles con estos lentes?',
+            '¿Qué ventajas ofrece este monitor curvo para diversas actividades?',
+            '¿Cómo mejora la calidad de sonido y la conectividad este altavoz Bluetooth?',
+            '¿Cómo mejora esta barra de sonido la calidad y la inmersión del sonido en el entretenimiento en el hogar?',
+            '¿Qué calidad de audio y funciones de alta fidelidad tiene este sistema de audio?',
+            '¿Qué calidad de audio y funciones de alta fidelidad tiene este sistema de audio?',
         ];
         
-        for($i = 0; $i<10; $i++){
-        $pregunta = new Pregunta();
-        $pregunta->idProducto =  3 * $i + 1;
-        $pregunta->contenido = $preguntas[$i];
-        $pregunta->idUsuario = 5; 
-        $pregunta->save();
+        for ($i = 0; $i < 16; $i++) {
+            $pregunta = new Pregunta();
+            $pregunta->idProducto = 2 * $i + 1;
+            $pregunta->contenido = $preguntasImpares[$i];
+            $pregunta->idUsuario = random_int(16, 20); 
+            $pregunta->save();
         }
     }
 }
