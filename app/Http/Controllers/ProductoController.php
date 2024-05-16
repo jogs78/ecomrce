@@ -128,7 +128,7 @@ class ProductoController extends Controller
         $producto = Producto::with('categoria')->find($cual);
 
         //aqui se "dispara el evento ComprarProducto"
-        ComprarProducto::dispatch();
+        ComprarProducto::dispatch( Auth::user(), $producto );
         
         return view('producto.comprar',compact('producto'));
     }

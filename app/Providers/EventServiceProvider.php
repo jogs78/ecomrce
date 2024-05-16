@@ -5,12 +5,15 @@ namespace App\Providers;
 use Illuminate\Auth\Events\Registered;
 use App\Events\ComprarProducto;
 use App\Listeners\RegistraCompra;
+use App\Listeners\EviarCorreoCompra;
 
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Observers\ProductoObserver;
 use App\Models\Producto;
+
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         ComprarProducto::class => [
             RegistraCompra::class,
+            EviarCorreoCompra::class
         ]
 
 
