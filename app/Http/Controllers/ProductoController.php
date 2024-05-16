@@ -9,6 +9,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use App\Events\ComprarProducto;
 
 class ProductoController extends Controller
 {
@@ -125,6 +126,9 @@ class ProductoController extends Controller
     public function comprar( $cual)
     {
         $producto = Producto::with('categoria')->find($cual);
+
+        //aqui se "dispara el evento ComprarProducto"
+        ComprarProducto::dispatch();
         
         return view('producto.comprar',compact('producto'));
     }

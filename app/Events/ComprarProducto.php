@@ -19,7 +19,7 @@ class ComprarProducto
      */
     public function __construct()
     {
-        //modificar
+        //
     }
 
     /**
