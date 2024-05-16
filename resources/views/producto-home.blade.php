@@ -25,7 +25,9 @@
     @endforeach
     </ul>
 @else
-    <img src="{{ asset('storage/default-image.jpg') }}" class="card-img-top" alt="Imagen por defecto">
+    <div style="width: 100%; height: 250px; display:flex; align-items: center; justify-content: center; padding:10px;">
+        <img src="{{ asset('storage/fotos_productos/' . $producto->id . '.jpg') }}" class="card-img-top" alt="Imagen por defecto" style="width:auto; height: 100%; max-width:100%;">
+    </div>
 @endif
 
                             <div class="card-body">

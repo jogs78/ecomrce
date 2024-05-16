@@ -31,7 +31,7 @@
                     <ul>
                         @foreach ($producto->fotos as $foto)
                             <li>
-                            <img src ="{{asset('storage/' . $foto->ruta) }}" alt="imagen-producto" style="max-width: 100px; max-height: 100px;"/>
+                            <img src ="{{asset('storage/fotos_productos/' . $producto->id . '.jpg') }}" alt="imagen-producto" style="max-width: 50px; max-height: 50px;"/>
                             </li>
                         @endforeach
                     </ul>

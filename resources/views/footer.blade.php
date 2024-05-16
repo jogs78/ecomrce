@@ -31,7 +31,7 @@
     
     <footer>
         <div class="footer-container">
-            <p>&copy; {{ date('Y') }} Techtopia. Todos los derechos reservados.</p>
+            <p style="margin: 0;">&copy; {{ date('Y') }} Techtopia. Todos los derechos reservados.</p>
         </div>
     </footer>
 
