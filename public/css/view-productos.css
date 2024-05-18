@@ -1,0 +1,35 @@
+.container {
+    margin-top: 24px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #033649;
+}
+
+.input-group-append button {
+    background: #036564;
+    border: none;
+}
+
+.input-group-append button:hover {
+    background: #033649;
+}
+
+.card-body a {
+    background: #036564;
+    border: none;
+}
+
+.card-body a:hover {
+    background: #033649;
+}
+
+.card-body p {
+    font-size: 13px;
+}
+
+.card {
+    margin-bottom: 24px;
+}

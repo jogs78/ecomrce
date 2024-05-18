@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<link rel="stylesheet" href="/css/view-productos.css">
+
 @section('contenido')
     <div class="container">
         <h1>Listado de Productos</h1>
@@ -25,7 +27,7 @@
     @endforeach
     </ul>
 @else
-    <div style="width: 100%; height: 250px; display:flex; align-items: center; justify-content: center; padding:10px;">
+    <div style="width: 100%; height: 230px; display:flex; align-items: center; justify-content: center; padding:10px;">
         <img src="{{ asset('storage/fotos_productos/' . $producto->id . '.jpg') }}" class="card-img-top" alt="Imagen por defecto" style="width:auto; height: 100%; max-width:100%;">
     </div>
 @endif
