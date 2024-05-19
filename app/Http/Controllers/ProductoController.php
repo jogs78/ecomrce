@@ -51,9 +51,16 @@ class ProductoController extends Controller
         // Procesar las fotos
         if ($request->hasFile('fotos')) {
             foreach ($request->file('fotos') as $foto) {
-            $ruta = $foto->store('fotos_productos', 'public');
+
+            $extension = $foto->getClientOriginalExtension(); // Obtiene la extensión del archivo
+            $nombreArchivo = $producto->id . '.' . $extension; //nombre del archivo
+            
+            $ruta = 'public/storage/fotos_productos'. $nombreArchivo; // Guarda la imagen en la carpeta "storage/app/fotos_productos"
+            $foto->move(public_path('/storage/fotos_productos'), $nombreArchivo);
+
+            //$ruta = $foto->store('fotos_productos', 'public');
             // Crear la foto y asociarla con el producto
-            $producto->fotos()->create(['ruta' => $ruta]);
+            //$producto->fotos()->create(['ruta' => $ruta]);
     }
 
         $newConsigna = new Consiga();
@@ -156,8 +163,12 @@ public function comprarProducto(Request $request, Producto $producto)
         ]);
     
         $foto = $request->file('foto');
-        $ruta = $foto->store('public/fotos_productos'); // Guarda la imagen en la carpeta "storage/app/fotos_productos"
+        $extension = $foto->getClientOriginalExtension(); // Obtiene la extensión del archivo
+        $nombreArchivo = $producto->id . '.' . $extension; //nombre del archivo
+        $ruta = 'public/storage/fotos_productos'. $nombreArchivo; // Guarda la imagen en la carpeta "storage/app/fotos_productos"
     
+        $foto->move(public_path('/storage/fotos_productos'), $nombreArchivo);
+
         $producto->fotos()->create([
             'ruta' => $ruta,
         ]);
