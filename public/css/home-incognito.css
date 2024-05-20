@@ -1,0 +1,44 @@
+.banner-web {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+}
+
+.container h1{
+    color: #033649;
+    margin-bottom: 24px;
+}
+
+.container p {
+    color: #033649;
+}
+
+.container-text {
+    width: 100%;
+    height: auto;
+    margin-top: 24px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.container-text-left {
+    width: 75%;
+    height: auto;
+    padding-right: 24px;
+}
+
+.container-text-right {
+    width: 23%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-text-right img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+}
