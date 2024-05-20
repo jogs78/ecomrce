@@ -12,7 +12,7 @@
                 <th>Nombre del Producto</th>
                 <th>Descripcion del producto</th>
                 <th>Cantidad</th>
-                <th>Precio</th>
+                <th>Monto</th>
                 <th>Estado</th>
             </tr>
         </thead>
