@@ -6,7 +6,6 @@
 /storage/*.key
 /vendor
 /ayudas
-/resources/views/layouts/maestra.blade.php
 .env
 .env.backup
 .env.production
