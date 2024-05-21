@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\InstaladorController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PuertaController;
 use App\Http\Controllers\UsuarioController;
@@ -43,3 +44,4 @@ Route::resource('categorias', CategoriaController::class);
 Route::resource('productos', ProductoController::class);//(GET POST PUT)
 Route::get('comprar-productos/{cual}',[ProductoController::class,'comprar'])->name('productos.comprar');
 
+Route::get('instalar', [InstaladorController::class, 'instalar']);

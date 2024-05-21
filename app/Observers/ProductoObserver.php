@@ -14,10 +14,13 @@ class ProductoObserver
      */
     public function created(Producto $producto): void
     {
-           $evento = new Registro();
-           $evento->quien = Auth::user()->correo;
-           $evento->que = "Agrega un productos en el sistema.";
-           $evento->save();
+        $usuario =Auth::user();
+        if(! is_null($usuario) ){
+            $evento = new Registro();
+            $evento->quien = Auth::user()->correo;
+            $evento->que = "Agrega un productos en el sistema.";
+            $evento->save(); 
+        }
 
     }
 
