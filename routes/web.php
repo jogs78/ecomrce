@@ -27,9 +27,9 @@ Route::post('/agregar-usuario',[UserController::class, 'store'])->name('user.cre
 
 //CATEGORIA CLIENTE
 Route::get('/mostrar-categorias',[CategoriaController::class, 'show'])->name('ShowCategorias');
-Route::post('/producto/{id}/preguntar', [ProductoController::class, 'hacerPregunta'])->name('hacerPregunta');
-Route::get('subirEvidencia/{producto}', [ProductoController::class, 'subirEvidencia'])->name('subirEvidencia');
-Route::post('guardarEvidencia/{producto}', [ProductoController::class, 'guardarEvidencia'])->name('guardarEvidencia');
+Route::post('/producto/{id}/preguntar', [ProductoController::class, 'hacerPregunta'])->middleware('auth.cliente')->name('hacerPregunta');
+Route::get('subirEvidencia/{producto}', [ProductoController::class, 'subirEvidencia'])->middleware('auth.cliente')->name('subirEvidencia');
+Route::post('guardarEvidencia/{producto}', [ProductoController::class, 'guardarEvidencia'])->middleware('auth.cliente')->name('guardarEvidencia');
 
 
 //INCIO DE SESION POR ROLES
@@ -41,22 +41,22 @@ Route::get('/vendedor',[RolesController::class, 'vendedor'])->middleware('auth.v
 
 //VENDEDOR
 
-Route::get('vendedor/misProducto',[ProductoController::class, 'mostrarMisProductos'])->name('mProductos');
-Route::get('vendedor/productosComprados',[ProductoController::class, 'mostrarMisVentas'])->name('mVentas');
-Route::post('/producto/{id}/responder', [ProductoController::class, 'responderPregunta'])->name('responderPregunta');
-Route::get('/productos/{producto}/editar', [ProductoController::class, 'edit'])->name('productosEditar');
-Route::put('/productos/{producto}', [ProductoController::class, 'actualizar'])->name('productosActualizar');
-Route::delete('/productos/{producto}', [ProductoController::class, 'eliminarProducto'])->name('eliminarProducto');
-Route::post('/productos/{producto}/subir-foto', [ProductoController::class, 'subirFoto'])->name('SubirFoto');
-Route::delete('/producto/{foto}/eliminar-foto', [ProductoController::class, 'eliminarFoto'])->name('eliminarFoto');
-Route::post('/productos/crear', [ProductoController::class, 'guardarProducto'])->name('guardarProducto');
-Route::get('/productos/crear', [ProductoController::class, 'mostrarFormularioCrear'])->name('crearProducto');
+Route::get('vendedor/misProducto',[ProductoController::class, 'mostrarMisProductos'])->middleware('auth.vendedor')->name('mProductos');
+Route::get('vendedor/productosComprados',[ProductoController::class, 'mostrarMisVentas'])->middleware('auth.vendedor')->name('mVentas');
+Route::post('/producto/{id}/responder', [ProductoController::class, 'responderPregunta'])->middleware('auth.vendedor')->name('responderPregunta');
+Route::get('/productos/{producto}/editar', [ProductoController::class, 'edit'])->middleware('auth.vendedor')->name('productosEditar');
+Route::put('/productos/{producto}', [ProductoController::class, 'actualizar'])->middleware('auth.vendedor')->name('productosActualizar');
+Route::delete('/productos/{producto}', [ProductoController::class, 'eliminarProducto'])->middleware('auth.vendedor')->name('eliminarProducto');
+Route::post('/productos/{producto}/subir-foto', [ProductoController::class, 'subirFoto'])->middleware('auth.vendedor')->name('SubirFoto');
+Route::delete('/producto/{foto}/eliminar-foto', [ProductoController::class, 'eliminarFoto'])->middleware('auth.vendedor')->name('eliminarFoto');
+Route::post('/productos/crear', [ProductoController::class, 'guardarProducto'])->middleware('auth.vendedor')->name('guardarProducto');
+Route::get('/productos/crear', [ProductoController::class, 'mostrarFormularioCrear'])->middleware('auth.vendedor')->name('crearProducto');
 
 
 //PRODUCTOS
 Route::get('/listar-productos',[ProductoController::class, 'index'])->name('lista');
 Route::get('/productos/{id}', [ProductoController::class, 'verDetalles'])->name('detalles');
-Route::get('/supervisor/productosKardex/{id}', [ProductoController::class, 'verDetallesKardex'])->name('Kardex');
+Route::get('/supervisor/productosKardex/{id}', [ProductoController::class, 'verDetallesKardex'])->middleware('auth.supervisor')->name('Kardex');
 Route::get('/buscar-productos', [ProductoController::class, 'buscarProductos'])->name('buscarProductos');
 Route::get('/productos-vendedor', [ProductoController::class, 'listarProductosVendedor'])->name('listarProductosVendedor');
 
@@ -68,38 +68,38 @@ Route::get('categorias/{id}/productos', [CategoriaController::class, 'productosP
 
 
 // CRUD CATEGORIAS PARA SUPERVISOR
-Route::get('supervisor/categorias', [CategoriaController::class, 'crud'])->name('CrudSupervisorCategorias');
-Route::get('categorias/create', [CategoriaController::class, 'create'])->name('CreateCategorias');
-Route::post('categorias', [CategoriaController::class, 'store'])->name('StoreCategorias');
-Route::get('categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('EditCategorias');
-Route::put('categorias/{id}', [CategoriaController::class, 'update'])->name('UpdateCategorias');
-Route::delete('categorias/{id}', [CategoriaController::class, 'destroy'])->name('DestroyCategorias');
-Route::get('categorias/{id}/productos-supervisor', [CategoriaController::class, 'productosPorCategoriaSup'])->name('ProductosCategoriaSupervisor');
+Route::get('supervisor/categorias', [CategoriaController::class, 'crud'])->middleware('auth.supervisor')->name('CrudSupervisorCategorias');
+Route::get('categorias/create', [CategoriaController::class, 'create'])->middleware('auth.supervisor')->name('CreateCategorias');
+Route::post('categorias', [CategoriaController::class, 'store'])->middleware('auth.supervisor')->name('StoreCategorias');
+Route::get('categorias/{id}/edit', [CategoriaController::class, 'edit'])->middleware('auth.supervisor')->name('EditCategorias');
+Route::put('categorias/{id}', [CategoriaController::class, 'update'])->middleware('auth.supervisor')->name('UpdateCategorias');
+Route::delete('categorias/{id}', [CategoriaController::class, 'destroy'])->middleware('auth.supervisor')->name('DestroyCategorias');
+Route::get('categorias/{id}/productos-supervisor', [CategoriaController::class, 'productosPorCategoriaSup'])->middleware('auth.supervisor')->name('ProductosCategoriaSupervisor');
 
 // CRUD USUARIO PARA SUPERVISOR
-Route::get('supervisor/usuarios',[UsuarioController::class,'index'])->name('CrudSupervisorUsuarios');
-Route::get('usuarios/create', [UsuarioController::class, 'create'])->name('CreateUsuario');
-Route::post('usuarios', [UsuarioController::class, 'store'])->name('StoreUsuario');
-Route::get('usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('EditUsuario');
-Route::put('usuarios/{id}', [UsuarioController::class, 'update'])->name('UpdateUsuario');
-Route::delete('usuarios/{id}', [UsuarioController::class, 'destroy'])->name('DestroyUsuario');
-Route::get('/supervisor/vendedores',[UsuarioController::class, 'indexVendor'])->name('UsuariosVendedores');
-Route::get('/supervisor/vendedores/detalles/{id}',[UsuarioController::class, 'detalleVendor'])->name('DetalleVendedores');
+Route::get('supervisor/usuarios',[UsuarioController::class,'index'])->middleware('auth.supervisor')->name('CrudSupervisorUsuarios');
+Route::get('usuarios/create', [UsuarioController::class, 'create'])->middleware('auth.supervisor')->name('CreateUsuario');
+Route::post('usuarios', [UsuarioController::class, 'store'])->middleware('auth.supervisor')->name('StoreUsuario');
+Route::get('usuarios/{id}/edit', [UsuarioController::class, 'edit'])->middleware('auth.supervisor')->name('EditUsuario');
+Route::put('usuarios/{id}', [UsuarioController::class, 'update'])->middleware('auth.supervisor')->name('UpdateUsuario');
+Route::delete('usuarios/{id}', [UsuarioController::class, 'destroy'])->middleware('auth.supervisor')->name('DestroyUsuario');
+Route::get('/supervisor/vendedores',[UsuarioController::class, 'indexVendor'])->middleware('auth.supervisor')->name('UsuariosVendedores');
+Route::get('/supervisor/vendedores/detalles/{id}',[UsuarioController::class, 'detalleVendor'])->middleware('auth.supervisor')->name('DetalleVendedores');
 
 
 
             //ENCARGADO
 
 Route::get('encargado/consignar',[UsuarioController::class, 'consignasEncargado'])->middleware('auth.encargado')->name('consignar');
-Route::get('encargado/desconsignar',[UsuarioController::class, 'desconsignasEncargado'])->name('desconsignar');
-Route::get('encargado/consignar/producto{id}',[ConsigaController::class, 'consignasEncargadoProducto'])->name('consignarProducto');
-Route::put('encargado/consignar/producto{id}', [ConsigaController::class, 'actualizar'])->name('Updateconsigna');
-Route::get('encargado/desconsignar/producto{id}',[ConsigaController::class, 'desconsignasEncargadoProducto'])->name('desconsignarProducto');
-Route::put('encargado/desconsignar/producto{id}',[ConsigaController::class, 'actualizarDesconsignas'])->name('Desconsignar');
+Route::get('encargado/desconsignar',[UsuarioController::class, 'desconsignasEncargado'])->middleware('auth.encargado')->name('desconsignar');
+Route::get('encargado/consignar/producto{id}',[ConsigaController::class, 'consignasEncargadoProducto'])->middleware('auth.encargado')->name('consignarProducto');
+Route::put('encargado/consignar/producto{id}', [ConsigaController::class, 'actualizar'])->middleware('auth.encargado')->name('Updateconsigna');
+Route::get('encargado/desconsignar/producto{id}',[ConsigaController::class, 'desconsignasEncargadoProducto'])->middleware('auth.encargado')->name('desconsignarProducto');
+Route::put('encargado/desconsignar/producto{id}',[ConsigaController::class, 'actualizarDesconsignas'])->middleware('auth.encargado')->name('Desconsignar');
 
 //CONTRASENIAS
 
-Route::get('encargado/cambio-contrasena/home',[UsuarioController::class, 'contraEncargado'])->name('ContraEncargadoVista');
+Route::get('encargado/cambio-contrasena/home',[UsuarioController::class, 'contraEncargado'])->middleware('auth.encargado')->name('ContraEncargadoVista');
 
 
 
@@ -108,16 +108,23 @@ Route::get('encargado/cambio-contrasena/home',[UsuarioController::class, 'contra
 
         //CONTADORES
 
-Route::get('contador/mostrar-transacciones/home',[TransaccionController::class, 'index'])->name('mostrarTransacciones');
-Route::get('contador/mostrar-transacciones/transacciones{id}',[TransaccionController::class, 'indexEsp'])->name('mostrarTransaccionesDetalles');
-Route::put('contador/mostrar-transacciones/transacciones{id}',[TransaccionController::class, 'updatetransaccion'])->name('transaccion');
+Route::get('contador/mostrar-transacciones/home',[TransaccionController::class, 'index'])->middleware('auth.contador')->name('mostrarTransacciones');
+Route::get('contador/mostrar-transacciones/transacciones{id}',[TransaccionController::class, 'indexEsp'])->middleware('auth.contador')->name('mostrarTransaccionesDetalles');
+Route::put('contador/mostrar-transacciones/transacciones{id}',[TransaccionController::class, 'updatetransaccion'])->middleware('auth.contador')->name('transaccion');
 
 //PAGOS
-Route::get('contador/Iniciar-Pagos',[UsuarioController::class,'index'])->name('PagosIniciar');
-Route::get('contador/Continuar-Pagos/Vendedor{id}',[PagoController::class, 'magia'])->name('vamosahacermagia');
+Route::get('contador/Iniciar-Pagos',[UsuarioController::class,'index'])->middleware('auth.contador')->name('PagosIniciar');
+Route::get('contador/Continuar-Pagos/Vendedor{id}',[PagoController::class, 'magia'])->middleware('auth.contador')->name('vamosahacermagia');
 
 //Listar-PAGOS
 
-Route::get('contador/Listar-Pagos',[PagoController::class, 'index'])->name('ListarPagos');
-Route::get('contador/Listar-Pagos/pago{id}',[PagoController::class, 'detalles'])->name('DetallarPago');
-Route::put('contador/Listar-Pagos/pago{id}',[PagoController::class, 'actualizardetalles'])->name('ActualizarPago');
+Route::get('contador/Listar-Pagos',[PagoController::class, 'index'])->middleware('auth.contador')->name('ListarPagos');
+Route::get('contador/Listar-Pagos/pago{id}',[PagoController::class, 'detalles'])->middleware('auth.contador')->name('DetallarPago');
+Route::put('contador/Listar-Pagos/pago{id}',[PagoController::class, 'actualizardetalles'])->middleware('auth.contador')->name('ActualizarPago');
+
+
+
+
+//PAGINA DE ERROR
+
+Route::get('errorCredenciales',[UserController::class, 'Error'])->name('error');

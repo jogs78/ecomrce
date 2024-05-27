@@ -19,6 +19,7 @@
         <p>Publicado Por: {{$consigna->producto->user->name}}</p>
         <p>Alta en: {{$consigna->producto->user->updated_at}}</p>
         <p>
+            
 
             <form action="{{ route('Desconsignar', $consigna->producto->id) }}" method="POST">
                 @csrf

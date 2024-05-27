@@ -21,6 +21,6 @@ class RedirectContador
         return $next($request);
         }
         }
-        return redirect()->to('/');
+        return redirect()->to('errorCredenciales');
     }
 }

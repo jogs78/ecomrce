@@ -33,5 +33,10 @@ class UserController extends Controller
 
     }
 
+    public function Error(){
+
+        return view('error');
+    }
+
 
 }

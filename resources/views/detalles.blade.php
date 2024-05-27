@@ -37,8 +37,9 @@
                             @endif
                         </p>
                     @endforeach
+                @if (Auth::check())
                     @if($producto->user->id == auth()->user()->id)
-                        <form action={{route('responderPregunta',$producto->id)}} method="POST">
+                        <form action={{route('responderPregunta',$pregunta->id)}} method="POST">
                             @csrf
                             <div class="form-group" id="mensajeField">
                                 <label for="mensaje">Responder</label>
@@ -47,6 +48,7 @@
                             </div>
                         </form>
                     @endif
+                @endif
                 
                 <ul>
                     

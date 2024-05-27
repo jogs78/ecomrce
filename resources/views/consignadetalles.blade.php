@@ -19,6 +19,7 @@
         <p>Publicado Por: {{$consigna->producto->user->name}}</p>
         <p>Publicado en: {{$consigna->producto->user->created_at}}</p>
         <p>
+            
 
         <form action={{route('Updateconsigna',$consigna->producto->id)}} method="POST">
             @csrf
