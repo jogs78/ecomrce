@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Usuario>
@@ -23,12 +22,9 @@ class UsuarioFactory extends Factory
         $faker->addProvider(new Identificacion($faker));
         $genero = $faker->genero();
         $nombre = ($genero == 'MASCULINO') ? $faker->nombreMasculino() : $faker->nombreFemenino();
-        $correo = fake()->unique()->safeEmail();
-        $clave = Hash::make($correo);
 
         return [
-            'clave' => $clave,
-            'correo' => $correo,
+            'correo' => fake()->unique()->safeEmail(),
             'apellido_paterno' => $faker->apellido(),
             'apellido_materno' => $faker->apellido(),
             'nombre' => $nombre,
