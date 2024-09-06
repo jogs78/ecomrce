@@ -18,7 +18,7 @@ class ProductoObserver
         if(! is_null($usuario) ){
             $evento = new Registro();
             $evento->quien = Auth::user()->correo;
-            $evento->que = "Agrega un productos en el sistema.";
+            $evento->que = "Agrega el producto ". $producto->nombre . " en el sistema.";
             $evento->save(); 
         }
 

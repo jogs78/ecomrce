@@ -46,6 +46,7 @@ class UsuarioController extends Controller
         $nuevo->apellido_paterno = $valores['apellido_paterno'];
         $nuevo->apellido_materno = $valores['apellido_materno'];
         $nuevo->genero = $valores['genero'];
+        $nuevo->correo = $valores['correo'];
         $nuevo->save();
         return redirect(route('lista'));
         //

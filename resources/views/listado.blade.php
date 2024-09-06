@@ -10,27 +10,6 @@
 </head>
 <body>
  LISTADO DE USUARIOS
- <ul>
-<?php
- for ($i=0; $i < 10 ; $i++) { 
-   echo "<li> Usuario " . $i+1 . "</li>";
- }
-?>
- </ul>
-<hr>
-<ul>
-@for ($i = 0; $i < 10; $i++)
-    <li> Usuario {{$i+1}} </li>
-@endfor
- </ul>
- <hr>
- <ul>
- @foreach ($usuarios as $elemento)
-  <li> Usuario {{$elemento->nombre}}, {{$elemento->apellido_paterno}} {{$elemento->apellido_materno}} </li>
- @endforeach
- <ul> 
-<hr>
-
 <table border="1">
   <thead>
     <th>#</th>

@@ -19,6 +19,9 @@
   <label for='otro'>apellido_materno</label>
   <input type='text' name='apellido_materno' id='otro'><br>
 
+  <label for='correo'>correo</label>
+  <input type='text' name='correo' id='correo'><br>
+
   <label for='lista'>genero</label>
   <select name="genero" id="lista">
    <option value="Masculino">Hombre</option>
