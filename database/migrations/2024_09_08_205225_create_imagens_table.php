@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('producto_id')->unsigned();
             $table->foreign('producto_id')->references('id')->on('productos');
-            $table->enum('descripcion',['portada','muestra'])->default('portada');
+            $table->enum('tipo',['portada','muestra'])->default('portada');
             $table->string('ruta');
             $table->timestamps();
         });
