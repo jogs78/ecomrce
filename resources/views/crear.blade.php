@@ -22,6 +22,9 @@
   <label for='correo'>correo</label>
   <input type='text' name='correo' id='correo'><br>
 
+  <label for='clave'>clave</label>
+  <input type='password' name='clave' id='clave'><br>
+
   <label for='lista'>genero</label>
   <select name="genero" id="lista">
    <option value="Masculino">Hombre</option>
