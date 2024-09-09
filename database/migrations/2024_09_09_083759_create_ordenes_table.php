@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('producto_id')->unsigned();
             $table->foreign('producto_id')->references('id')->on('productos');
             $table->string('total');
+            $table->enum('estado',['pendiente','pagado','enviado','entregado'])->default('pendiente');
             $table->timestamps('fecha_ordenes');
         });
     }
