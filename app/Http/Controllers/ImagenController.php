@@ -13,7 +13,8 @@ class ImagenController extends Controller
      */
     public function index()
     {
-        //
+        $encontrados = Imagen::all();
+        return view('imagen.index', compact('encontrados'));
     }
 
     /**

@@ -10,7 +10,7 @@ use App\Models\Categoria;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use App\Events\ComprarProducto;
-
+use Illuminate\Support\Facades\Storage;
 class ProductoController extends Controller
 {
     /**
@@ -62,6 +62,15 @@ class ProductoController extends Controller
         $nuevo = new Producto();
         $nuevo->fill($valores);
         $nuevo->save();
+
+        if($request->hasFile('imagen')){
+            $archivo = $request->file('imagen');
+            $nombre = $nuevo->id . "." . $archivo->getClientOriginalExtension();
+            $ruta = $archivo->storeAs('productos', $nombre, 'public'); 
+            $nuevo->imagen = $ruta;
+            $nuevo->save();
+        }
+        
         return redirect(route('productos.index'));
     }
 
@@ -105,8 +114,26 @@ class ProductoController extends Controller
 //        $evento->que = "Actualizo el productos del sistema.";
 //        $evento->save();
 
-        $producto->save();
-        return redirect(route('productos.index'));
+         // Actualizar otros campos del producto
+    $producto->fill($request->except('imagen')); // Actualiza todos los campos menos 'imagen'
+
+    if ($request->hasFile('imagen')) {
+        // Eliminar la imagen anterior si existe
+        if ($producto->imagen) {
+            Storage::disk('public')->delete('productos/' . $producto->imagen);
+        }
+
+        // Almacenar la nueva imagen
+        $archivo = $request->file('imagen');
+        $nombre = $producto->id . "." . $archivo->getClientOriginalExtension();
+        $archivo->storeAs('productos', $nombre, 'public');
+
+        // Actualizar el nombre de la imagen en la base de datos
+        $producto->imagen = $nombre;
+    }
+
+    $producto->save(); // Guardar los cambios en el producto
+    return redirect(route('productos.index'));
     }
 
     /**
